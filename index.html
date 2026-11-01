@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffaf8">
+  <meta name="description" content="اكتشفي مستحضرات تجميل وعناية بالبشرة مختارة بعناية.">
+  <title>لَما | جمالكِ يبدأ من هنا</title>
+
+  <!-- خطوط عربية وإنجليزية -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome للأيقونات -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#" aria-label="لَما - الصفحة الرئيسية">
+        <span class="logo-mark">لَ</span>
+        <span>لَما</span>
+      </a>
+
+      <button class="menu-toggle icon-button" id="menuToggle"
+              type="button" aria-label="فتح القائمة" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="القائمة الرئيسية">
+        <a href="#home">الرئيسية</a>
+        <a href="#products">منتجاتنا</a>
+        <a href="#about">قصتنا</a>
+      </nav>
+
+      <button class="cart-trigger" id="openCart" type="button"
+              aria-label="فتح سلة المشتريات">
+        <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+        <span>السلة</span>
+        <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <span class="eyebrow"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> لحظتكِ الخاصة تبدأ هنا</span>
+        <h1>جمالكِ، <span>بكل تفاصيله.</span></h1>
+        <p>اختيارات ناعمة من مستحضرات العناية والجمال، لتكون كل لحظة عناية تجربة تستحقينها.</p>
+        <a class="button button-dark" href="#products">
+          اكتشفي المجموعة
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="hero-decoration hero-decoration-one" aria-hidden="true"></div>
+      <div class="hero-decoration hero-decoration-two" aria-hidden="true"></div>
+    </section>
+
+    <section class="products-section container" id="products">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">اختيارات لَما</span>
+          <h2>تسوقي منتجاتنا</h2>
+        </div>
+        <p>جمالٌ بسيط، وعناية تليق بكِ.</p>
+      </div>
+
+      <div class="filter-list" role="group" aria-label="فلترة المنتجات حسب الفئة">
+        <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">الكل</button>
+        <button class="filter-button" type="button" data-filter="makeup" aria-pressed="false">مكياج</button>
+        <button class="filter-button" type="button" data-filter="skincare" aria-pressed="false">العناية بالبشرة</button>
+        <button class="filter-button" type="button" data-filter="perfume" aria-pressed="false">عطور</button>
+      </div>
+
+      <div class="products-grid" id="productsGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="container about-content">
+        <span class="eyebrow">عن لَما</span>
+        <h2>عناية بسيطة، وإحساس أجمل.</h2>
+        <p>نؤمن أن روتين العناية الخاص بكِ ليس رفاهية، بل لحظة صغيرة من الاهتمام تستحقينها كل يوم.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="logo footer-logo" href="#home"><span class="logo-mark">لَ</span><span>لَما</span></a>
+      <p>جمالكِ يستحق الأفضل.</p>
+      <span class="copyright">© <span id="currentYear"></span> لَما. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+  <!-- نافذة سلة المشتريات -->
+  <div class="modal-backdrop" id="cartModal" hidden>
+    <section class="cart-modal" role="dialog" aria-modal="true"
+             aria-labelledby="cartTitle" aria-describedby="cartDescription">
+      <div class="modal-header">
+        <div>
+          <span class="eyebrow">اختياراتكِ الجميلة</span>
+          <h2 id="cartTitle">سلة المشتريات</h2>
+        </div>
+        <button class="icon-button close-modal" id="closeCart" type="button"
+                aria-label="إغلاق السلة">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <p class="visually-hidden" id="cartDescription">المنتجات الموجودة في سلة المشتريات.</p>
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-summary">
+        <span>الإجمالي</span>
+        <strong id="cartTotal">0 ر.س</strong>
+      </div>
+
+      <button class="button whatsapp-button" id="checkoutWhatsApp" type="button">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        إتمام الطلب عبر واتساب
+      </button>
+      <p class="checkout-note">سيتم فتح واتساب برسالة تحتوي على تفاصيل طلبكِ.</p>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
